@@ -25,7 +25,7 @@ fun create_2D_Matrix(size_of_Matrix: Int)
 {
 
 
-    //assert(size_of_Matrix != 0);
+    //assert(true);
 
     var rnds : Double = 0.0;
         // Create a 2D Array
@@ -92,16 +92,19 @@ for (array in output_array_Seq) {
             for (k in 0.. size_of_Matrix )
             {
                 output_array_Seq[i][j] += randomArray_1[i][k] * randomArray_2[k][j];
+                //println(output_array_Seq[i][j]);
             };
         };
     };
+
+
 
     var size: Int = 0;
     for (j in 0.. size_of_Matrix )
     {
         for (k in 0.. size_of_Matrix )
         {
-            println(output_array_Seq[j][k]);
+            //println(output_array_Seq[j][k]);
             size += 1;
         };
     };
@@ -115,7 +118,7 @@ for (array in output_array_Seq) {
 fun main(args: Array<String>) {
     println("Hello World!");
 
-    val matrix_Size: Int = 10
+    val matrix_Size: Int = 150
     create_2D_Matrix(matrix_Size);
 
     multiply_The_Arrays(matrix_Size);
