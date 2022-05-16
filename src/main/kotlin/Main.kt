@@ -1,4 +1,6 @@
 import java.util.concurrent.ThreadLocalRandom
+import kotlin.coroutines.*
+
 
 var randomArray_1 = arrayOf<Array<Double>>();
 var randomArray_2 = arrayOf<Array<Double>>();
@@ -48,37 +50,62 @@ fun create_2D_Matrix(size_of_Matrix: Int)
         output_array_Seq += array_output;
     }
 
-    // Vomit 2D array
-    for (array in randomArray_1) {
-        for (value in array) {
-            print("$value ");
-        };
-        println();
-    }
 
-    println("====================================================================================");
-    for (array in randomArray_2) {
-        for (value in array) {
-            print("$value ");
-        };
-        println();
-    }
-
-    println("====================================================================================");
-    for (array in output_array_Seq) {
-        for (value in array) {
-            print("$value ");
-        };
-        println();
-    }
 
 
 }
 
 
-fun multiply_The_Arrays()
+fun multiply_The_Arrays(size_of_Matrix: Int)
 {
 
+    // Vomit 2D array
+    /*
+for (array in randomArray_1) {
+    for (value in array) {
+        print("$value ");
+    };
+    println();
+}
+
+println("====================================================================================");
+for (array in randomArray_2) {
+    for (value in array) {
+        print("$value ");
+    };
+    println();
+}
+
+println("====================================================================================");
+for (array in output_array_Seq) {
+    for (value in array) {
+        print("$value ");
+    };
+    println();
+}
+*/
+    println("====================================================================================");
+    for (i in 0 .. size_of_Matrix)
+    {
+        for (j in 0.. size_of_Matrix )
+        {
+            for (k in 0.. size_of_Matrix )
+            {
+                output_array_Seq[i][j] += randomArray_1[i][k] * randomArray_2[k][j];
+            };
+        };
+    };
+
+    var size: Int = 0;
+    for (j in 0.. size_of_Matrix )
+    {
+        for (k in 0.. size_of_Matrix )
+        {
+            println(output_array_Seq[j][k]);
+            size += 1;
+        };
+    };
+    println(size)
 }
 
 
@@ -88,10 +115,10 @@ fun multiply_The_Arrays()
 fun main(args: Array<String>) {
     println("Hello World!");
 
+    val matrix_Size: Int = 10
+    create_2D_Matrix(matrix_Size);
 
-    create_2D_Matrix(5);
-
-    multiply_The_Arrays();
+    multiply_The_Arrays(matrix_Size);
 
     /*
     var passing: Double = 1000.0;
