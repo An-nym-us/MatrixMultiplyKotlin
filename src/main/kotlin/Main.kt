@@ -23,7 +23,7 @@ class UserThread1(thread: String) : Thread() {
         runCalulation()
     }
 
-
+    val currentTimestamp = System.currentTimeMillis();
     public var threadPassing: String = thread;
     fun runCalulation() {
         //var passing: String = threadPassing;
@@ -37,7 +37,15 @@ class UserThread1(thread: String) : Thread() {
 
 
         //println(x)
-        println("Thread $threadPassing Has Complteted Task")
+
+
+        val EndTimestamp = System.currentTimeMillis();
+
+
+        var timeout = EndTimestamp - currentTimestamp;
+
+        println("Thread $threadPassing Has Complteted Task In $timeout Milliseonds" )
+
     }
 }
 
@@ -166,7 +174,7 @@ fun main(args: Array<String>) {
     var temp = List(0){UserThread1("0")}
 
 
-    for (i in 1..10)
+    for (i in 1..5)
     {
         temp += UserThread1("Thread $i")
     }
@@ -176,6 +184,7 @@ fun main(args: Array<String>) {
     {
         i.start()
     }
+
 
 
     /*
