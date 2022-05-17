@@ -1,17 +1,16 @@
-import java.util.concurrent.ThreadLocalRandom
-import kotlin.coroutines.*
-
+import java.util.concurrent.TimeUnit
+import java.util.Random
 
 var randomArray_1 = arrayOf<Array<Double>>();
 var randomArray_2 = arrayOf<Array<Double>>();
 var output_array_Seq = arrayOf<Array<Double>>();
 
 
-fun testing(passing: Double)
-{
+fun testing(passing: Double) {
     println(passing);
     //passing = 500.0;
 }
+
 data class SomeObj(var x: Int = 0)
 
 fun takeObject(o: SomeObj) {
@@ -19,50 +18,37 @@ fun takeObject(o: SomeObj) {
 }
 
 
-class UserThread_1():Thread()
-{
-    override fun run()
-    {
+class UserThread1(thread: String) : Thread() {
+    override fun run() {
+        runCalulation()
+    }
 
-        var x: Long = 2
-        println("Thread One Created and started")
 
-        for (i in 1..1000000000)
-        {
-            println("Thread one $x")
+    public var threadPassing: String = thread;
+    fun runCalulation() {
+        //var passing: String = threadPassing;
+        var x: Long = 0
+        println("Thread $threadPassing Created and started")
+
+        for (i in 1..20000000000) {
+            //println("Thread $threadPassing $x")
             x++
         }
-        println(x)
-        println("Thread One Has Complteted Task")
+
+
+        //println(x)
+        println("Thread $threadPassing Has Complteted Task")
     }
 }
 
-class UserThread_2():Thread()
-{
-    override fun run()
-    {
 
-        var x: Long = 2
-        println("Thread Two Created and started")
-
-        for (i in 1..1000000000)
-        {
-            println("Thread Two $x")
-            x++
-        }
-        println(x)
-        println("Thread Two Has Complteted Task")
-    }
-}
-
-fun create_2D_Matrix(size_of_Matrix: Int)
-{
+fun create_2D_Matrix(size_of_Matrix: Int) {
     val currentTimestamp = System.currentTimeMillis();
 
     //assert(size_of_Matrix != 0);
 
-    var rnds : Double = .5;
-        // Create a 2D Array
+    var rnds: Double = .5;
+    // Create a 2D Array
     for (i in 0..size_of_Matrix) {
         var array = arrayOf<Double>();
         var array_2 = arrayOf<Double>();
@@ -88,17 +74,13 @@ fun create_2D_Matrix(size_of_Matrix: Int)
     val EndTimestamp = System.currentTimeMillis();
 
 
-    var timeout = EndTimestamp - currentTimestamp ;
+    var timeout = EndTimestamp - currentTimestamp;
     println("$timeout  In miliseconds")
 }
 
 
-fun multiply_The_Arrays(size_of_Matrix: Int)
-{
+fun multiply_The_Arrays(size_of_Matrix: Int) {
     val currentTimestamp = System.currentTimeMillis();
-
-
-
 
 
     // Vomit 2D array
@@ -130,12 +112,9 @@ for (array in output_array_Seq) {
 
 
     println("====================================================================================");
-    for (i in 0 .. size_of_Matrix)
-    {
-        for (j in 0.. size_of_Matrix )
-        {
-            for (k in 0.. size_of_Matrix )
-            {
+    for (i in 0..size_of_Matrix) {
+        for (j in 0..size_of_Matrix) {
+            for (k in 0..size_of_Matrix) {
                 output_array_Seq[i][j] += randomArray_1[i][k] * randomArray_2[k][j];
                 //println(output_array_Seq[j][k]);
             };
@@ -143,11 +122,9 @@ for (array in output_array_Seq) {
     };
 
     var size: Int = 0;
-    for (j in 0.. size_of_Matrix )
-    {
-        for (k in 0.. size_of_Matrix )
-        {
-           //println(output_array_Seq[j][k]);
+    for (j in 0..size_of_Matrix) {
+        for (k in 0..size_of_Matrix) {
+            //println(output_array_Seq[j][k]);
             size += 1;
         };
     };
@@ -156,7 +133,7 @@ for (array in output_array_Seq) {
     val EndTimestamp = System.currentTimeMillis();
 
 
-    var timeout = EndTimestamp - currentTimestamp ;
+    var timeout = EndTimestamp - currentTimestamp;
 
     println(size)
 
@@ -174,11 +151,7 @@ for (array in output_array_Seq) {
 */
 
 
-
 }
-
-
-
 
 
 fun main(args: Array<String>) {
@@ -190,14 +163,41 @@ fun main(args: Array<String>) {
     //multiply_The_Arrays(matrix_Size);
 
 
+    var temp = List(0){UserThread1("0")}
 
 
-    var t1= UserThread_1()
-    var t2=UserThread_2()
+    for (i in 1..10)
+    {
+        temp += UserThread1("Thread $i")
+    }
+
+
+    for (i in temp)
+    {
+        i.start()
+    }
+
+
+    /*
     t1.start()
+    TimeUnit.MICROSECONDS.sleep(1000L)
     t2.start()
+    TimeUnit.MICROSECONDS.sleep(1000L)
+    t3.start()
+    TimeUnit.MICROSECONDS.sleep(1000L)
+    t4.start()
+    TimeUnit.MICROSECONDS.sleep(1000L)
+    t5.start()
+    TimeUnit.MICROSECONDS.sleep(1000L)
+    t6.start()
+    TimeUnit.MICROSECONDS.sleep(1000L)
+    t7.start()
+    TimeUnit.MICROSECONDS.sleep(1000L)
+    t8.start()
+    TimeUnit.MICROSECONDS.sleep(1000L)
+    t9.start()
 
-
+*/
     /*
     var passing: Double = 1000.0;
    testing(passing);
