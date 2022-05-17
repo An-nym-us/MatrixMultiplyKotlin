@@ -19,7 +19,41 @@ fun takeObject(o: SomeObj) {
 }
 
 
+class UserThread_1():Thread()
+{
+    override fun run()
+    {
 
+        var x: Long = 2
+        println("Thread One Created and started")
+
+        for (i in 1..1000000000)
+        {
+            println("Thread one $x")
+            x++
+        }
+        println(x)
+        println("Thread One Has Complteted Task")
+    }
+}
+
+class UserThread_2():Thread()
+{
+    override fun run()
+    {
+
+        var x: Long = 2
+        println("Thread Two Created and started")
+
+        for (i in 1..1000000000)
+        {
+            println("Thread Two $x")
+            x++
+        }
+        println(x)
+        println("Thread Two Has Complteted Task")
+    }
+}
 
 fun create_2D_Matrix(size_of_Matrix: Int)
 {
@@ -151,11 +185,17 @@ fun main(args: Array<String>) {
     println("Hello World!");
 
     val matrix_Size: Int = 1000
-    create_2D_Matrix(matrix_Size);
-    println("Matrixs have been cvreated")
-    multiply_The_Arrays(matrix_Size);
+    //create_2D_Matrix(matrix_Size);
+    //println("Matrixs have been cvreated")
+    //multiply_The_Arrays(matrix_Size);
 
 
+
+
+    var t1= UserThread_1()
+    var t2=UserThread_2()
+    t1.start()
+    t2.start()
 
 
     /*
