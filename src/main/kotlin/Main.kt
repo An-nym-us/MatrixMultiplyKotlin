@@ -6,21 +6,13 @@ var randomArray_2 = arrayOf<Array<Double>>();
 var output_array_Seq = arrayOf<Array<Double>>();
 
 
-fun testing(passing: Double) {
-    println(passing);
-    //passing = 500.0;
-}
-
-data class SomeObj(var x: Int = 0)
-
-fun takeObject(o: SomeObj) {
-    o.x = 1
-}
 
 
 class UserThread1(thread: String) : Thread() {
     override fun run() {
-        runCalulation()
+
+        //runCalulation()
+    runMatrixCalulations()
     }
 
     val currentTimestamp = System.currentTimeMillis();
@@ -28,7 +20,7 @@ class UserThread1(thread: String) : Thread() {
     fun runCalulation() {
         //var passing: String = threadPassing;
         var x: Long = 0
-        println("Thread $threadPassing Created and started")
+        println("Thread $threadPassing started")
 
         for (i in 1..20000000000) {
             //println("Thread $threadPassing $x")
@@ -39,13 +31,18 @@ class UserThread1(thread: String) : Thread() {
         //println(x)
 
 
-        val EndTimestamp = System.currentTimeMillis();
-
-
+        val EndTimestamp = System.currentTimeMillis()
         var timeout = EndTimestamp - currentTimestamp;
-
         println("Thread $threadPassing Has Complteted Task In $timeout Milliseonds" )
 
+    }
+
+    fun runMatrixCalulations()
+    {
+        val matrix_Size: Int = 700
+        create_2D_Matrix(matrix_Size);
+        println("Matrixs have been cvreated")
+        multiply_The_Arrays(matrix_Size);
     }
 }
 
@@ -79,11 +76,11 @@ fun create_2D_Matrix(size_of_Matrix: Int) {
     }
 
 
+
+
     val EndTimestamp = System.currentTimeMillis();
-
-
     var timeout = EndTimestamp - currentTimestamp;
-    println("$timeout  In miliseconds")
+    println("Finished Creation In $timeout  Miliseconds")
 }
 
 
@@ -119,7 +116,7 @@ for (array in output_array_Seq) {
 
 
 
-    println("====================================================================================");
+
     for (i in 0..size_of_Matrix) {
         for (j in 0..size_of_Matrix) {
             for (k in 0..size_of_Matrix) {
@@ -139,13 +136,9 @@ for (array in output_array_Seq) {
 
 
     val EndTimestamp = System.currentTimeMillis();
-
-
     var timeout = EndTimestamp - currentTimestamp;
-
-    println(size)
-
-    println("$timeout  In miliseconds")
+    println("Finsihed Multiplying In $timeout miliseconds")
+    println("====================================================================================");
     /*
     if (timeout < 1000)
     {
@@ -165,57 +158,32 @@ for (array in output_array_Seq) {
 fun main(args: Array<String>) {
     println("Hello World!");
 
-    val matrix_Size: Int = 1000
-    //create_2D_Matrix(matrix_Size);
-    //println("Matrixs have been cvreated")
-    //multiply_The_Arrays(matrix_Size);
+
+    for ( i in 1..4)
+    {
+        val matrix_Size: Int = 700
+        create_2D_Matrix(matrix_Size);
+        println("Matrixs have been created")
+        multiply_The_Arrays(matrix_Size);
+    }
+
 
 
     var temp = List(0){UserThread1("0")}
-
-
-    for (i in 1..5)
+    for (i in 1..20)
     {
         temp += UserThread1("Thread $i")
     }
-
-
     for (i in temp)
     {
+        //println("Thread $i Created")
         i.start()
+       //i.join()
     }
 
 
 
-    /*
-    t1.start()
-    TimeUnit.MICROSECONDS.sleep(1000L)
-    t2.start()
-    TimeUnit.MICROSECONDS.sleep(1000L)
-    t3.start()
-    TimeUnit.MICROSECONDS.sleep(1000L)
-    t4.start()
-    TimeUnit.MICROSECONDS.sleep(1000L)
-    t5.start()
-    TimeUnit.MICROSECONDS.sleep(1000L)
-    t6.start()
-    TimeUnit.MICROSECONDS.sleep(1000L)
-    t7.start()
-    TimeUnit.MICROSECONDS.sleep(1000L)
-    t8.start()
-    TimeUnit.MICROSECONDS.sleep(1000L)
-    t9.start()
 
-*/
-    /*
-    var passing: Double = 1000.0;
-   testing(passing);
-
-
-    val obj = SomeObj()
-    takeObject(obj)
-    println("obj after call: $obj") // SomeObj(x=1)
-*/
 
 
     // Try adding program arguments via Run/Debug configuration.
