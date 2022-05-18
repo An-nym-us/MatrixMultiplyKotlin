@@ -1,6 +1,8 @@
 import java.util.concurrent.TimeUnit
 import java.util.Random
 
+
+
 var randomArray_1 = arrayOf<Array<Double>>();
 var randomArray_2 = arrayOf<Array<Double>>();
 var output_array_Seq = arrayOf<Array<Double>>();
@@ -157,7 +159,7 @@ for (array in output_array_Seq) {
 
 fun main(args: Array<String>) {
     println("Hello World!");
-
+    //assert(false)
 
     for ( i in 1..4)
     {
@@ -170,9 +172,10 @@ fun main(args: Array<String>) {
 
 
     var temp = List(0){UserThread1("0")}
-    for (i in 1..20)
+    for (i in 1..4)
     {
         temp += UserThread1("Thread $i")
+
     }
     for (i in temp)
     {
