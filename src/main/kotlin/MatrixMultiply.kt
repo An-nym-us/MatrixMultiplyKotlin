@@ -2,6 +2,8 @@ class MatrixMultiply {
     var randomArray_1 = arrayOf<Array<Double>>();
     var randomArray_2 = arrayOf<Array<Double>>();
     var output_array_Seq = arrayOf<Array<Double>>();
+    var timeout_MM: Long = 0;
+    var timeout_MC : Long = 0
 
 
     fun create_2D_Matrix(size_of_Matrix: Int) {
@@ -34,14 +36,21 @@ class MatrixMultiply {
 
 
         val EndTimestamp = System.currentTimeMillis();
-        var timeout = EndTimestamp - currentTimestamp;
-        println("Finished Creation In $timeout  Miliseconds")
+        timeout_MC = EndTimestamp - currentTimestamp;
 
     }
 
+    fun get_Matrix_Multiply_time() : Long
+    {
+        return timeout_MM;
+    }
 
+    fun get_Matrix_Creation_time() : Long{
+        return timeout_MC;
+    }
 
     fun multiply_The_Arrays(size_of_Matrix: Int) {
+
         val currentTimestamp = System.currentTimeMillis();
 
 
@@ -65,20 +74,7 @@ class MatrixMultiply {
 
 
         val EndTimestamp = System.currentTimeMillis();
-        var timeout = EndTimestamp - currentTimestamp;
-        println("Finsihed Multiplying In $timeout miliseconds")
-        println("====================================================================================");
-        /*
-        if (timeout < 1000)
-        {
-            println("$timeout  In miliseconds")
-        }
-        else
-        {
-            timeout /= 1000;
-            println("$timeout  In Seconds")
-        }
-    */
+        timeout_MM = EndTimestamp - currentTimestamp;
 
 
     }

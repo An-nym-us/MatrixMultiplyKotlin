@@ -1,42 +1,42 @@
 class MatrixMultiplyThreads(thread: String) : Thread() {
     override fun run() {
 
-        //runCalulation()
+
         runMatrixCalulations()
     }
 
-    val currentTimestamp = System.currentTimeMillis();
-    public var threadPassing: String = thread;
-    fun runCalulation() {
-        //var passing: String = threadPassing;
-        var x: Long = 0
-        println("Thread $threadPassing started")
+    var timeout_MC : Long = 0
 
-        for (i in 1..20000000000) {
-            //println("Thread $threadPassing $x")
-            x++
-        }
-
-
-        //println(x)
-
-
-        val EndTimestamp = System.currentTimeMillis()
-        var timeout = EndTimestamp - currentTimestamp;
-        println("Thread $threadPassing Has Complteted Task In $timeout Milliseonds")
-
-    }
 
 
     fun runMatrixCalulations()
     {
-        var instnace = MatrixMultiply()
+        val currentTimestamp = System.currentTimeMillis();
 
+        var temp: Long = 0;
+        var instnace = MatrixMultiply()
         val matrix_Size: Int = 700
         instnace.create_2D_Matrix(matrix_Size);
-        println("Matrixs have been cvreated")
+        println("Matrixs have been created")
+
+        temp = instnace.get_Matrix_Creation_time()
+        println("Creation completed in $temp milliseconds")
+
+
         instnace.multiply_The_Arrays(matrix_Size);
+
+        temp = instnace.get_Matrix_Multiply_time()
+        println("Calculation completed in $temp milliseconds")
+
+
+        val EndTimestamp = System.currentTimeMillis();
+        timeout_MC = EndTimestamp - currentTimestamp;
     }
 
+
+    fun get_Total_calculation_time() : Long
+    {
+        return timeout_MC;
+    }
 
 }
