@@ -1,7 +1,5 @@
 class MatrixMultiplyThreads(thread: String) : Thread() {
     override fun run() {
-
-
         runMatrixCalulations()
     }
 
@@ -15,6 +13,8 @@ class MatrixMultiplyThreads(thread: String) : Thread() {
 
         var temp: Long = 0;
         var instnace = MatrixMultiply()
+
+
         val matrix_Size: Int = 700
         instnace.create_2D_Matrix(matrix_Size);
         println("Matrixs have been created")

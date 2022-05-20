@@ -1,26 +1,9 @@
-import java.util.concurrent.TimeUnit
-import java.util.Random
-
-
-
-
-
-
-
-
-
-
-
-
-fun main(args: Array<String>) {
-    println("Hello World!");
-    //assert(false)
-
+fun run_seq_Matrix()
+{
     var instnace = MatrixMultiply();
-
     var storeTotalPocessTime: Long = 0
-    /*
-    for ( i in 1..1)
+
+    for ( i in 1..2)
     {
         var temp: Long = 0;
 
@@ -35,7 +18,7 @@ fun main(args: Array<String>) {
         println("Matrix created in $temp miliseconds")
         instnace.multiply_The_Arrays(matrix_Size);
 
-        temp = instnace.get_Matrix_Multipply_time()
+        temp = instnace.get_Matrix_Multiply_time()
         println("Matrix Multiply time completed in $temp miliseconds")
 
         storeTotalPocessTime += temp
@@ -43,14 +26,18 @@ fun main(args: Array<String>) {
     println("START REPORT ================================================")
     println("Total completion of these process was $storeTotalPocessTime miliseconds")
     println("END REPORT ================================================")
-*/
 
 
-    storeTotalPocessTime = 0;
+}
 
+
+
+fun run_Epic()
+{
+    var storeTotalPocessTime: Long = 0;
     var temp = List(0){MatrixMultiplyThreads("0")}
 
-    for (i in 1..4)
+    for (i in 1..6)
     {
         temp += MatrixMultiplyThreads("Thread $i")
     }
@@ -60,6 +47,7 @@ fun main(args: Array<String>) {
         //i.join()
     }
 
+
     var isvalid: Boolean = true;
     while(isvalid == true)
     {
@@ -67,23 +55,20 @@ fun main(args: Array<String>) {
 
         for (i in temp)
         {
-            if(i.isAlive == false)
+            if (!i.isAlive)
             {
-                return;
-            }
-            else if (i.isAlive == true)
-            {
-                isvalid = true;
-            }
+                isvalid = false;
 
-        }
-        for (i in temp)
-        {
-            if (i.get_Total_calculation_time() > storeTotalPocessTime)
-            {
-                storeTotalPocessTime = i.get_Total_calculation_time();
+                for (i in temp)
+                {
+                    if (i.get_Total_calculation_time() > storeTotalPocessTime)
+                    {
+                        storeTotalPocessTime = i.get_Total_calculation_time();
+                    }
+                }
             }
         }
+
 
     }
 
@@ -93,6 +78,14 @@ fun main(args: Array<String>) {
     println("END REPORT ================================================")
 
 
+}
+
+fun main(args: Array<String>) {
+    println("Hello World!");
+    //assert(false)
+
+    run_seq_Matrix()  ;
+    run_Epic()
 
 
     // Try adding program arguments via Run/Debug configuration.
